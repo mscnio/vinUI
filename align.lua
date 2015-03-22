@@ -1,3 +1,4 @@
+-- stolen from ALIGN addon
 local grid
 local boxSize = 32
 
