@@ -2,9 +2,9 @@
 ## Title: vinUI
 ## Notes: Simple UI enhancements
 ## Author: vinylger
-## Version: 15.04.23.1
+## Version: 15.04.24.1
 
-vinUI.lua
 align.lua
-kick.lua
 fonts.lua
+kick.lua
+vinUI.lua
