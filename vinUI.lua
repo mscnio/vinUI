@@ -3,6 +3,19 @@ SlashCmdList["RELOADUI"] = function() ReloadUI() end
 SLASH_RELOADUI1 = "/rl"
 SLASH_RELOADUI2 = "/reload"
 
+SlashCmdList["TOKEN"] = function()
+		print("Frage Tokenpreis ab ...")
+		C_WowTokenPublic.UpdateMarketPrice()
+		C_Timer.After(2,
+		function () 
+			local tokenpreis = (GetMoneyString(C_WowTokenPublic.GetCurrentMarketPrice()))
+			print("Tokenpreis: " .. tokenpreis);
+		end)
+	end;
+SLASH_STATS1 = '/tk'
+
+
+
 -- FONTS
 GameFontNormal:SetFont("Fonts\\FRIZQT__.ttf",12)
 GameFontNormalSmall:SetFont("Fonts\\FRIZQT__.ttf",11)
@@ -55,10 +68,22 @@ hooksecurefunc(UFP,function(self) if self.portrait then local t = CIT[select(2,U
 --]]
 
 -- PRINT WORLDBOSS ID
-print("World-Boss ID:")
-for k, v in pairs({Drov = 37460, Tarlna = 37462, Rukhmar = 37464})
-	do print(format("%s: %s", k, IsQuestFlaggedCompleted(v) and "\124cff00ff00Yes\124r" or "\124cffff0000No\124r")) 
-end
+C_Timer.After(3, 
+	function()
+		print("World-Boss ID:")
+			for k, v in pairs({Drov = 37460, Tarlna = 37462, Rukhmar = 37464})
+				do print(format("%s: %s", k, IsQuestFlaggedCompleted(v) and 
+					"\124cff00ff00Ja\124r" or "\124cffff0000Nein\124r")) 
+			end
+	end);
+
+-- PRINT TOKEN PRICE
+C_WowTokenPublic.UpdateMarketPrice(); 
+C_Timer.After(5,
+	function () 
+		local tokenpreis = (GetMoneyString(C_WowTokenPublic.GetCurrentMarketPrice()))
+		print("Tokenpreis: " .. tokenpreis);
+	end); 
 
 -- END
 UIErrorsFrame:AddMessage("vinUI geladen.", 75, 0, 130, 53, 5)
